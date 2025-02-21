@@ -1,8 +1,6 @@
 import { HomePageProps, PostProps } from '@/types';
 import Link from 'next/link';
 
-// import { Oswald, Source_Code_Pro } from 'next/font/google';
-
 const fetchPosts = async (page: number) => {
 	// Fetch Posts from API (limit 10)
 	const url = `https://jsonplaceholder.typicode.com/posts?_limit=10&_page=${page}`;
@@ -20,16 +18,20 @@ export default async function Home({ searchParams }: HomePageProps) {
 		<div className={`max-w-3xl mx-auto py-10 px-5`}>
 			{/* Posts */}
 			<section aria-label="posts-heading">
-				<h1 className="text-3xl font-bold text-center text-pink-800 mb-6" id="posts-header">
+				<h1 className="text-3xl font-bold text-center text-pink-500 mb-6" id="posts-header">
 					Posts
 				</h1>
 				<ul className="space-y-4">
 					{posts.map((post: PostProps) => (
 						<li
-							className="border border-gray-200 p-4 rounded-md shadow-sm transition hover:shadow-md"
+							className="border border-gray-700 p-4 rounded-md shadow-sm transition hover:shadow-md bg-gray-900"
 							key={post.id}>
 							<h2 className="text-xl font-semibold">
-								<Link href={`/posts/${post.id}`}>{post.title}</Link>
+								<Link
+									href={`/posts/${post.id}`}
+									className="text-pink-400 hover:text-pink-300 hover:underline">
+									{post.title}
+								</Link>
 							</h2>
 						</li>
 					))}
@@ -47,7 +49,7 @@ export default async function Home({ searchParams }: HomePageProps) {
 					<Link
 						href={`/?page=${page - 1}`}
 						aria-label="Go to Previous Page"
-						className="px-4 py-2 bg-pink-300 rounded-lg hover:bg-pink-400 transition">
+						className="px-4 py-2 bg-gray-700 text-gray-200 rounded-lg hover:bg-gray-600 transition">
 						&larr; Prev
 					</Link>
 				)}
@@ -57,7 +59,7 @@ export default async function Home({ searchParams }: HomePageProps) {
 					<Link
 						href={`/?page=${page + 1}`}
 						aria-label="Go to Next Page"
-						className="px-4 py-2 bg-pink-600 text-white rounded-lg hover:bg-pink-700 transition">
+						className="px-4 py-2 bg-pink-600 text-white rounded-lg hover:bg-pink-500 transition">
 						Next &rarr;
 					</Link>
 				)}

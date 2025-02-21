@@ -3,8 +3,12 @@
 @tailwind utilities;
 
 :root {
-	--background: #ffffff;
-	--foreground: #121212;
+	--background-light: #ffffff;
+	--background-dark: #121212;
+	--foreground-light: #1c1c1c;
+	--foreground-dark: #ededed;
+	--primary-light: #db2777;
+	--primary-dark: #f472b6;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -15,7 +19,7 @@
 }
 
 body {
-	color: var(--foreground);
-	background: var(--background);
-	font-family: Arial, Helvetica, sans-serif;
+	color: var(--foreground-dark);
+	background: var(--background-dark);
+	font-family: 'Nunito Sans', sans-serif;
 }
