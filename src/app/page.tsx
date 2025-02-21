@@ -17,23 +17,34 @@ export default async function Home({ searchParams }: HomePageProps) {
 	return (
 		<div>
 			{/* Posts */}
-			<h1>Posts</h1>
-			<ul>
-				{posts.map((post: PostProps) => (
-					<li key={post.id}>
-						<Link href={`/posts/${post.id}`}>{post.title}</Link>
-					</li>
-				))}
-			</ul>
+			<section aria-label="posts-heading">
+				<h1 id="posts-header">Posts</h1>
+				<ul>
+					{posts.map((post: PostProps) => (
+						<li key={post.id}>
+							<Link href={`/posts/${post.id}`}>{post.title}</Link>
+						</li>
+					))}
+				</ul>
+			</section>
 
 			{/* Pagination Buttons */}
-			<div>
+
+			<nav aria-label="Pagination" role="navigation">
 				{/* If page is greater than 1, render Prev button */}
-				{page > 1 && <Link href={`/?page=${page - 1}`}>Prev</Link>}
+				{page > 1 && (
+					<Link href={`/?page=${page - 1}`} aria-label="Go to Previous Page">
+						Prev
+					</Link>
+				)}
 				{/* If the length of posts equals 10, render the Next button */}
 				{/* if 7 posts are rendered, should mean theres no additional pages */}
-				{posts.length === 10 && <Link href={`/?page=${page + 1}`}>Next</Link>}
-			</div>
+				{posts.length === 10 && (
+					<Link href={`/?page=${page + 1}`} aria-label="Go to Next Page">
+						Next
+					</Link>
+				)}
+			</nav>
 		</div>
 	);
 }

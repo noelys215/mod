@@ -13,13 +13,14 @@ export default async function PostDetailPage({ params }: PostDetailProps) {
 	const post = await fetchSinglePost(Number(params.id));
 	if (!post) return null;
 
-	console.log(post);
 	return (
-		<div>
-			<h1>Post Details</h1>
-			<p>{post?.title}</p>
+		<article aria-label="post-title">
+			<h1 id="post-title">{post?.title}</h1>
 			<p>{post?.body}</p>
-			<Link href="/">Home</Link>
-		</div>
+
+			<Link href="/" aria-label="Go to Home Page">
+				Return Home
+			</Link>
+		</article>
 	);
 }
