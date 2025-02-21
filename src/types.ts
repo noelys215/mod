@@ -5,5 +5,9 @@ export interface PostProps {
 }
 
 export interface PostDetailProps {
-	params: { id: string };
+	params: Promise<{ id: string }>;
+}
+
+export interface SearchPageProps {
+	searchParams: Promise<{ page?: string }>;
 }

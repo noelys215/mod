@@ -10,7 +10,7 @@ const fetchSinglePost = async (id: number) => {
 };
 
 export default async function PostDetailPage({ params }: PostDetailProps) {
-	const post = await fetchSinglePost(Number(params.id));
+	const post = await fetchSinglePost(Number((await params).id));
 	if (!post) return null;
 
 	return (
