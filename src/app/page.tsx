@@ -1,4 +1,4 @@
-import { HomePageProps, PostProps } from '@/types';
+import { PostProps } from '@/types';
 import Link from 'next/link';
 
 const fetchPosts = async (page: number) => {
@@ -9,7 +9,7 @@ const fetchPosts = async (page: number) => {
 	return res.json();
 };
 
-export default async function Home({ searchParams }: HomePageProps) {
+export default async function Home({ searchParams }: { searchParams: { page?: string } }) {
 	const page = Number(searchParams?.page) || 1;
 	const posts = await fetchPosts(page);
 

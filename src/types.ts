@@ -4,9 +4,6 @@ export interface PostProps {
 	body?: string;
 }
 
-export interface HomePageProps {
-	searchParams: { [key: string]: string | undefined };
-}
 export interface PostDetailProps {
 	params: { id: string };
 }
