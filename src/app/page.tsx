@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 const fetchPosts = async (page: number) => {
 	// Fetch Posts from API (limit 10)
 	const url = `https://jsonplaceholder.typicode.com/posts?_limit=10&_page=${page}`;
@@ -11,13 +13,14 @@ interface PostProps {
 	title: string;
 }
 
-export default async function Home({ pageParams }: { pageParams: { page: string } }) {
-	const page = Number(pageParams?.page) || 2;
+export default async function Home({ searchParams }: { searchParams: { page: string } }) {
+	const page = Number(searchParams?.page) || 1;
 	const posts = await fetchPosts(page);
 
 	console.log(posts);
 	return (
 		<div>
+			{/* Posts */}
 			<h1>Posts</h1>
 			<ul>
 				{posts.map((post: PostProps) => (
@@ -26,6 +29,15 @@ export default async function Home({ pageParams }: { pageParams: { page: string 
 					</li>
 				))}
 			</ul>
+
+			{/* Pagination Buttons */}
+			<div>
+				{/* If page is greater than 1, render Prev button */}
+				{page > 1 && <Link href={`/?page=${page - 1}`}>Prev</Link>}
+				{/* If the length of posts equals 10, render the Next button */}
+				{/* if 7 posts are rendered, should mean theres no additional pages */}
+				{posts.length === 10 && <Link href={`/?page=${page + 1}`}>Next</Link>}
+			</div>
 		</div>
 	);
 }
