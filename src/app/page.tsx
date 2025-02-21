@@ -6,6 +6,11 @@ const fetchPosts = async (page: number) => {
 	return res.json();
 };
 
+interface PostProps {
+	id: number;
+	title: string;
+}
+
 export default async function Home({ pageParams }: { pageParams: { page: string } }) {
 	const page = Number(pageParams?.page) || 2;
 	const posts = await fetchPosts(page);
@@ -15,10 +20,9 @@ export default async function Home({ pageParams }: { pageParams: { page: string 
 		<div>
 			<h1>Posts</h1>
 			<ul>
-				{posts.map((post: { id: number; title: string; body: string }) => (
+				{posts.map((post: PostProps) => (
 					<li key={post.id}>
 						<h2>{post.title}</h2>
-						<p>{post.body}</p>
 					</li>
 				))}
 			</ul>
