@@ -1,3 +1,4 @@
+import { PostDetailProps } from '@/types';
 import Link from 'next/link';
 
 const fetchSinglePost = async (id: number) => {
@@ -8,7 +9,7 @@ const fetchSinglePost = async (id: number) => {
 	return res.json();
 };
 
-export default async function PostDetailPage({ params }: { params: { id: string } }) {
+export default async function PostDetailPage({ params }: PostDetailProps) {
 	const post = await fetchSinglePost(Number(params.id));
 	if (!post) return null;
 
