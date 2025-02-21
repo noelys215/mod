@@ -25,7 +25,7 @@ export default async function Home({ searchParams }: { searchParams: { page: str
 			<ul>
 				{posts.map((post: PostProps) => (
 					<li key={post.id}>
-						<h2>{post.title}</h2>
+						<Link href={`/posts/${post.id}`}>{post.title}</Link>
 					</li>
 				))}
 			</ul>
